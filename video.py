@@ -160,7 +160,7 @@ def inference(args, stream):
     online = False
     
     if ID == "webcam":
-        capture = cv2.VideoCapture(-1)
+        capture = cv2.VideoCapture(args.source)
     else:
         capture = cv2.VideoCapture(RTSPURL, cv2.CAP_FFMPEG)
     
@@ -268,7 +268,11 @@ def main():
     args = cli()
     
     if args.device == torch.device('cuda'):
-        mp.set_start_method('forkserver')
+        if (sys.platform == 'linux' or sys.platform == 'linux2'):
+            mp.set_start_method('forkserver')
+        else:
+            # Windows doesn't support forkserver
+            mp.set_start_method('spawn')
     
     if args.source is None:
         settings = config.ConfigParser().getConfig()
