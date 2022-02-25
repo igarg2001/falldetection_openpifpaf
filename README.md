@@ -44,7 +44,7 @@ conda activate falldetection_openpifpaf
 
 **Clone Repository**
 ```console
-git clone https://github.com/cwlroda/falldetection_openpifpaf.git
+git clone https://github.com/nbourre/falldetection_openpifpaf.git
 ```
 
 **Download OpenPifPaf 0.11.9 (PyPI)**
