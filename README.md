@@ -23,50 +23,61 @@ UR Fall Detection Dataset ([Link](http://fenix.univ.rzeszow.pl/~mkepski/ds/uf.ht
 _Note: Due to lack of available datasets, false positives and true negatives were not tested._
 
 ## Environment
+### Linux
 - Ubuntu 18.04 x86_64
 - Python 3.7.6
 - Anaconda 3
 - CUDA 10.2
 
+### Windows
+- Windows 10, 11 x64
+- Python 3.7.6
+- Anaconda 3
+- Cuda 11.5
+
 ## Usage
 **Setup Conda Environment**
 ```console
-$ conda create --name falldetection_openpifpaf python=3.7.6
-$ conda activate falldetection_openpifpaf
+conda create --name falldetection_openpifpaf python=3.7.6
+conda activate falldetection_openpifpaf
 ```
 
 **Clone Repository**
 ```console
-$ git clone https://github.com/cwlroda/falldetection_openpifpaf.git
+git clone https://github.com/nbourre/falldetection_openpifpaf.git
 ```
 
 **Download OpenPifPaf 0.11.9 (PyPI)**
 ```console
-$ pip3 install openpifpaf
+pip3 install openpifpaf==0.11.9
 ```
+The latest version breaks the code.
 
 **Copy Source Files**
+
+_To the original devs... This must be fixed! Seriously it's not funny._
 ```console
-$ cd {home_dir}/anaconda3/lib/python3.7/site-packages/openpifpaf
+cd {home_dir}/anaconda3/lib/python3.7/site-packages/openpifpaf
 Replace ALL files in that folder with the files in falldetection_openpifpaf
 ```
 
+
 **Install Dependencies**
 ```console
-$ pip3 install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 **Execution**
 
 For videos/RTSP streams, navigate to _config/config.xml_ to edit the video/RTSP stream path, then run:
 ```console
-$ python3 -m openpifpaf.video --show
-$ (use --help to see the full list of command line arguments)
+python3 -m openpifpaf.video --show
+(use --help to see the full list of command line arguments)
 ```
 For webcams/USB cameras, run:
 ```console
-$ python3 -m openpifpaf.video --source {CAMERA_ID} --show
-$ (use --help to see the full list of command line arguments)
+python3 -m openpifpaf.video --source {CAMERA_ID} --show
+(use --help to see the full list of command line arguments)
 ```
 
 ## Citations
