@@ -62,6 +62,7 @@ def cli():  # pylint: disable=too-many-statements,too-many-branches
                         help='OpenCV source url. Integer for webcams. Supports rtmp streams.')
     parser.add_argument('--video-output', default=None, nargs='?', const=True,
                         help='video output file')
+    parser.add_argument('--ID', default='webcam', help='set read from file or webcam')
     parser.add_argument('--video-fps', default=show.AnimationFrame.video_fps, type=float)
     parser.add_argument('--show', default=False, action='store_true')
     parser.add_argument('--horizontal-flip', default=False, action='store_true')
@@ -101,8 +102,8 @@ def cli():  # pylint: disable=too-many-statements,too-many-branches
     show.AnimationFrame.video_fps = args.video_fps
 
     # check whether source should be an int
-    if args.source is not None:
-        args.source = int(args.source)
+    #if args.source is not None:
+    #    args.source = int(args.source)
 
     # add args.device
     args.device = torch.device('cpu')
@@ -274,7 +275,7 @@ def main():
         settings = config.ConfigParser().getConfig()
         streamer = core.MultiStreamLoader(settings['RTSPAPI'])
     else:
-        streamer = (args.source, "webcam", args.scale)
+        streamer = (args.source, args.ID, args.scale)
         inference(args, streamer)
         
         return
